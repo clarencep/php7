@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:16.04
 
 ENV PHP_VERSION 7.1
 
@@ -7,7 +7,7 @@ RUN DEBIAN_FRONTEND="noninteractive" \
     && apt-get update -y \
     && apt-get install -y python python-software-properties software-properties-common \
     && apt-key adv --recv-keys --keyserver keyserver.ubuntu.com E5267A6C \
-    && add-apt-repository ppa:ondrej/php \
+    && LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php \
     && apt-get update -y \
     && apt-get install -y php$PHP_VERSION \
                           php$PHP_VERSION-fpm \
