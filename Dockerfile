@@ -22,6 +22,7 @@ RUN DEBIAN_FRONTEND="noninteractive" \
     && apt-get clean \
     && apt-get autoclean \
     && apt-get remove -y \
+    && rm -rf /var/lib/apt/lists/* \
     && echo end.
 
 CMD php -i
