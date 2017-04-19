@@ -4,7 +4,6 @@ ENV PHP_VERSION 7.1
 
 RUN DEBIAN_FRONTEND="noninteractive" \
     && echo start... \
-    && sed 's/archive.ubuntu.com/mirrors.aliyun.com/' -i.bak /etc/apt/sources.list \
     && apt-get update -y \
     && apt-get install -y python python-software-properties software-properties-common \
     && apt-key adv --recv-keys --keyserver keyserver.ubuntu.com E5267A6C \
@@ -20,9 +19,9 @@ RUN DEBIAN_FRONTEND="noninteractive" \
                           php$PHP_VERSION-mysql \
                           php$PHP_VERSION-mbstring \
                           php$PHP_VERSION-opcache  \
-    && apt-get clean
-    && apt-get autoclean
-    && apt-get remove -y
+    && apt-get clean \
+    && apt-get autoclean \
+    && apt-get remove -y \
     && echo end.
 
 CMD php -i
