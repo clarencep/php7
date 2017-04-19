@@ -1,13 +1,13 @@
-FROM ubuntu
+FROM ubuntu:16.04
 
 ENV PHP_VERSION 7.1
 
 RUN DEBIAN_FRONTEND="noninteractive" \
-    && echo start... \
+    && sed 's/archive.ubuntu.com/mirrors.aliyun.com/' -i.bak /etc/apt/sources.list \
     && apt-get update -y \
     && apt-get install -y python python-software-properties software-properties-common \
     && apt-key adv --recv-keys --keyserver keyserver.ubuntu.com E5267A6C \
-    && add-apt-repository ppa:ondrej/php \
+    && LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php \
     && apt-get update -y \
     && apt-get install -y php$PHP_VERSION \
                           php$PHP_VERSION-fpm \
@@ -22,7 +22,6 @@ RUN DEBIAN_FRONTEND="noninteractive" \
     && apt-get clean \
     && apt-get autoclean \
     && apt-get remove -y \
-    && rm -rf /var/lib/apt/lists/* \
-    && echo end.
+    && rm -rf /var/lib/apt/lists/* 
 
 CMD php -i
