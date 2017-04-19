@@ -2,7 +2,9 @@ FROM ubuntu
 
 ENV PHP_VERSION 7.1
 
-RUN echo start... \
+RUN DEBIAN_FRONTEND="noninteractive" \
+    && echo start... \
+    && sed 's/archive.ubuntu.com/mirrors.aliyun.com/' -i.bak /etc/apt/sources.list \
     && apt-get update -y \
     && apt-get install -y python python-software-properties software-properties-common \
     && apt-key adv --recv-keys --keyserver keyserver.ubuntu.com E5267A6C \
