@@ -18,4 +18,6 @@ before_script:
   - docker ps -a
 
 script:
-  - docker run -it --rm clarencep/php7 php -v
+  - for tag in latest ubuntu centos6 centos7; do \
+      docker run -it --rm clarencep/php7:$tag sh -c "php -v && php -m && cat /etc/*release*"; \
+    done;
