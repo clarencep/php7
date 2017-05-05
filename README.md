@@ -12,3 +12,7 @@ This is a PHP7 via webstatic
 `docker run -it clarencep/php7:centos7-php7.1 php -v`
 
 
+
+## Versions: [versions.txt](./versions.txt)
+
+## PHPINFO: [phpinfo.txt](./phpinfo.txt)
